@@ -1,0 +1,31 @@
+doctype html
+html
+  head
+    meta[charset="utf-8"]
+    title
+      | jQuery File Upload Example
+  body
+    /input#fileupload[type="file" name="files[]" data-url="server/php/" multiple]
+    /script[src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"]
+    /script[src="js/vendor/jquery.ui.widget.js"]
+    /script[src="js/jquery.iframe-transport.js"]
+    /script[src="js/jquery.fileupload.js"]
+    /script
+    /  |  $(function () { $('#fileupload').fileupload({ dataType: 'json', done: function (e, data) { $.each(data.result.files, function (index, file) { $('<p/>').text(file.name).appendTo(document.body); }); } }); }); 
+
+    = form_with model: @message, local: true do |f|
+      = f.text_field :content, id: "fileupload"
+      = f.file_field :picture
+      = f.submit
+
+    javascript:
+      $(function () {
+          $('#fileupload').fileupload({
+              dataType: 'json',
+              done: function (e, data) {
+                  $.each(data.result.files, function (index, file) {
+                      $('<p/>').text(file.name).appendTo(document.body);
+                  });
+              }
+          });
+      });

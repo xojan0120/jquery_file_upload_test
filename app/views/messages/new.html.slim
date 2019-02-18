@@ -1,0 +1,19 @@
+= form_with model: @message, id: "upload" do |f|
+  /= f.text_field :content
+  = f.file_field :picture, id: "select", style: "display:none"
+  /= f.submit
+
+button id="btn"
+  | テスト
+
+/javascript:
+/  $(function () {
+/      $('#upload').fileupload({
+/          dataType: 'json',
+/          done: function (e, data) {
+/              $.each(data.result.files, function (index, file) {
+/                  $('<p/>').text(file.name).appendTo(document.body);
+/              });
+/          }
+/      });
+/  });

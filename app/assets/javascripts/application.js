@@ -11,7 +11,10 @@
 // about supported directives.
 //
 //= require rails-ujs
-//= require jquery
+//  require jquery ←コメントアウト
+//= require jquery.ui.widget
+//= require jquery.iframe-transport
+//= require jquery.fileupload
 //= require bootstrap
 //= require turbolinks
 //= require_tree .

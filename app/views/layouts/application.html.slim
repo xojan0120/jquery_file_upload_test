@@ -5,6 +5,14 @@ html
       | JqueryFileUploadTest
     = csrf_meta_tags
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+
+    / jquery追加
+    = javascript_include_tag 'https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js'
+
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+
   body
-    = yield
+    .container
+      - flash.each do |message_type, message|
+        = content_tag(:div, message, class: "alert alert-#{message_type}")
+      = yield
