@@ -1,6 +1,8 @@
 class MessagesController < ApplicationController
   def new
+    @limit = 5
     @message = Message.new
+    @images = fetch_images(@limit)
   end
 
   def create
@@ -16,11 +18,22 @@ class MessagesController < ApplicationController
     end
 
     json = {
-      result: result
+      result: result,
+      images: fetch_images(5)
     }
 
     respond_to do |format|
       format.json { render json: json }
     end
   end
+
+  private
+
+    def fetch_images(limit)
+      images = []
+      Message.all.order(created_at: :desc).limit(limit).each do |message|
+        images << message.picture.url
+      end
+      images
+    end
 end

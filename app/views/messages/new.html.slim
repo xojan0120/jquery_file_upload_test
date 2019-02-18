@@ -1,25 +1,31 @@
-= form_with model: @message do |f|
-  = f.file_field :picture, id: "picture", style: "display:none", multiple: true
+.col-xs-6
+  = form_with model: @message do |f|
+    = f.file_field :picture, id: "picture", style: "display:none", multiple: true
 
-button#select
-  | ファイル選択(独自ボタン) 
+  button#select
+    | ファイル選択(独自ボタン) 
 
-button#send
-  | 送信する
+  button#send
+    | 送信する
 
-.info
-  span
-    | ファイルサイズ：
-  span.filesize
-    | 0
-  span
-    | bytes
+  .info
+    span
+      | ファイルサイズ：
+    span.filesize
+      | 0
+    span
+      | bytes
 
-  br
+    br
 
-  span
-    | 送信結果：
-  span.result
+    span
+      | 送信結果：
+    span.result
 
-.preview
+  .preview
 
+.col-xs-6
+  | 登録画像(最新#{@limit}件)
+  .images
+    - @images.each do |image|
+      = image_tag image

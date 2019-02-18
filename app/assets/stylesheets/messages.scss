@@ -1,6 +1,14 @@
-.preview img {
+@mixin image_base {
   width: 100px;
   height: auto;
+}
+
+.preview img {
+  @include image_base
+}
+
+.images img {
+  @include image_base
 }
 
 #send {
