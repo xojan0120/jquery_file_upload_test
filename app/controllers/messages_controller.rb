@@ -4,22 +4,23 @@ class MessagesController < ApplicationController
   end
 
   def create
-    content = params[:message][:content]
     picture = params[:message][:picture]
-    @message = Message.create(content: content, picture: picture)
+    @message = Message.create(picture: picture)
+    result = ""
     if @message.save
-      flash[:success] = "created success!"
+      #flash[:success] = 'created success!'
+      result = "OK"
     else
-      flash[:notice] = "created failure..."
+      #flash[:notice] = 'created failure...'
+      result = "NG"
     end
 
-    data = [{ name: "test" }]
-    json = JSON.generate({ files: data })
+    json = {
+      result: result
+    }
 
     respond_to do |format|
       format.json { render json: json }
-      format.js
-      format.html
     end
   end
 end

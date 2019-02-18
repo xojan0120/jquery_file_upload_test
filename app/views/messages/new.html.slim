@@ -1,19 +1,25 @@
-= form_with model: @message, id: "upload" do |f|
-  /= f.text_field :content
-  = f.file_field :picture, id: "select", style: "display:none"
-  /= f.submit
+= form_with model: @message do |f|
+  = f.file_field :picture, id: "picture", style: "display:none", multiple: true
 
-button id="btn"
-  | テスト
+button#select
+  | ファイル選択(独自ボタン) 
 
-/javascript:
-/  $(function () {
-/      $('#upload').fileupload({
-/          dataType: 'json',
-/          done: function (e, data) {
-/              $.each(data.result.files, function (index, file) {
-/                  $('<p/>').text(file.name).appendTo(document.body);
-/              });
-/          }
-/      });
-/  });
+button#send
+  | 送信する
+
+.info
+  span
+    | ファイルサイズ：
+  span.filesize
+    | 0
+  span
+    | bytes
+
+  br
+
+  span
+    | 送信結果：
+  span.result
+
+.preview
+
